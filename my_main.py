@@ -24,7 +24,8 @@ while True:
     Ip_header_decode = codecs.encode(Ip_header, 'hex')
     iph = struct.unpack('!BBHHHBBH4s4s', Ip_header)
     IHL_VERSION, TYPE_OF_SERVICE, total_len, pktID, FRAGMENT_STATUS, TIME_TO_LIVE, PROTOCOL, check_sum_of_hdr, src_IP, dest_IP = iph
-    src_IP_decode = codecs.encode(src_IP, 'dec')
+    src_IP_hex = codecs.encode(src_IP, 'hex')
+    scr_IP_dec = int(src_IP_hex, 0)
     print(f"IHL_VERSION:{IHL_VERSION}")
     print(f"TYPE_OF_SERVICE:{TYPE_OF_SERVICE}")
     print(f"total_len:{total_len}")
@@ -33,7 +34,7 @@ while True:
     print(f"TIME_TO_LIVE:{TIME_TO_LIVE}")
     print(f"PROTOCOL:{PROTOCOL}")
     print(f"check_sum_of_hdr:{check_sum_of_hdr}")
-    print(f"src_IP:{src_IP_decode}")
+    print(f"src_IP:{scr_IP_dec}")
     print(f"dest_IP:{dest_IP}")
     # print("Ip_header_decode")
     # print(Ip_header_decode)
