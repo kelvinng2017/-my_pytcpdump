@@ -44,4 +44,4 @@ while True:
     print(f"code:{code}")
     print(f"checksum:{checksum}")
     print(f"packetid:{packetid}")
-    print(f"seq:{seq}")
+    print(f"seq:{seq}")  # hi
