@@ -16,11 +16,6 @@ while True:
     # print(type(Eth_header_decode))
     # print(len(Eth_header_decode))
     Eth_header_decode_string = Eth_header_decode.decode("utf-8")
-    print(
-        f"Eth_header_from:{Eth_header_decode_string[0:2]}:{Eth_header_decode_string[2:4]}:{Eth_header_decode_string[4:6]}:{Eth_header_decode_string[6:8]}:{Eth_header_decode_string[8:10]}:{Eth_header_decode_string[10:12]}")
-    print(
-        f"Eth_header_to:{Eth_header_decode_string[12:14]}:{Eth_header_decode_string[14:16]}:{Eth_header_decode_string[16:18]}:{Eth_header_decode_string[18:20]}:{Eth_header_decode_string[20:22]}:{Eth_header_decode_string[22:24]}")
-    print(f"EtherType:{Eth_header_decode_string[24:28]}")
     # print(Eth_header_decode)
     Ip_header = packet[14:34]
     Ip_header_decode = codecs.encode(Ip_header, 'hex')
@@ -29,7 +24,14 @@ while True:
     icmp_header = packet[34:42]
     icmp_type, code, checksum, packetid, seq = struct.unpack(
         'BbHHh', icmp_header)
+    HTYPE, PTYPE, HLEN, PLEN, Operation, SHA, SPA, THA, TPA = struct.unpack(
+        '2s2s1s1s2s6s4s6s4s', packet[14:14+28])
 
+    print(
+        f"Eth_header_from:{Eth_header_decode_string[0:2]}:{Eth_header_decode_string[2:4]}:{Eth_header_decode_string[4:6]}:{Eth_header_decode_string[6:8]}:{Eth_header_decode_string[8:10]}:{Eth_header_decode_string[10:12]}")
+    print(
+        f"Eth_header_to:{Eth_header_decode_string[12:14]}:{Eth_header_decode_string[14:16]}:{Eth_header_decode_string[16:18]}:{Eth_header_decode_string[18:20]}:{Eth_header_decode_string[20:22]}:{Eth_header_decode_string[22:24]}")
+    print(f"EtherType:{Eth_header_decode_string[24:28]}")
     print(f"IHL_VERSION:{IHL_VERSION}")
     print(f"TYPE_OF_SERVICE:{TYPE_OF_SERVICE}")
     print(f"total_len:{total_len}")
@@ -44,4 +46,14 @@ while True:
     print(f"code:{code}")
     print(f"checksum:{checksum}")
     print(f"packetid:{packetid}")
-    print(f"seq:{seq}")  # hi
+    print(f"seq:{seq}")
+    print(f"HTYPE:{HTYPE}")
+    print(f"HLEN:{HLEN}")
+    print(f"PLEN:{PLEN}")
+    print(f"Operation:{Operation}")
+    print(f"SHA:{SHA}")
+    print(f"SPA:{SPA}")
+    print(f"THA:{THA}")
+    print(f"TPA:{TPA}")
+
+    print("===========================================")
