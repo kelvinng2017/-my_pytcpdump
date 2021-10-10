@@ -22,6 +22,17 @@ while True:
     # print(Eth_header_decode)
     Ip_header = packet[14:34]
     Ip_header_decode = codecs.encode(Ip_header, 'hex')
-    print(struct.unpack('!BBHHHBBH4s4s', Ip_header))
+    iph = struct.unpack('!BBHHHBBH4s4s', Ip_header)
+    IHL_VERSION, TYPE_OF_SERVICE, total_len, pktID, FRAGMENT_STATUS, TIME_TO_LIVE, PROTOCOL, check_sum_of_hdr, src_IP, dest_IP = iph
+    print(f"IHL_VERSION:{IHL_VERSION}")
+    print(f"TYPE_OF_SERVICE:{TYPE_OF_SERVICE}")
+    print(f"total_len:{total_len}")
+    print(f"pktID:{pktID}")
+    print(f"FRAGMENT_STATUS:{FRAGMENT_STATUS}")
+    print(f"TIME_TO_LIVE:{TIME_TO_LIVE}")
+    print(f"PROTOCOL:{PROTOCOL}")
+    print(f"check_sum_of_hdr:{check_sum_of_hdr}")
+    print(f"src_IP:{src_IP}")
+    print(f"dest_IP:{dest_IP}")
     # print("Ip_header_decode")
     # print(Ip_header_decode)
