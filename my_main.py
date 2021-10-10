@@ -24,6 +24,7 @@ while True:
     icmp_header = packet[34:42]
     icmp_type, code, checksum, packetid, seq = struct.unpack(
         'BbHHh', icmp_header)
+
     HTYPE, PTYPE, HLEN, PLEN, Operation, SHA, SPA, THA, TPA = struct.unpack(
         '2s2s1s1s2s6s4s6s4s', packet[14:14+28])
 
@@ -47,13 +48,14 @@ while True:
     print(f"checksum:{checksum}")
     print(f"packetid:{packetid}")
     print(f"seq:{seq}")
-    print(f"HTYPE:{HTYPE}")
-    print(f"HLEN:{HLEN}")
-    print(f"PLEN:{PLEN}")
-    print(f"Operation:{Operation}")
-    print(f"SHA:{SHA}")
-    print(f"SPA:{SPA}")
-    print(f"THA:{THA}")
-    print(f"TPA:{TPA}")
+
+    print(f"HTYPE:{codecs.encode(HTYPE, 'hex')}")
+    print(f"HLEN:{codecs.encode(HLEN, 'hex')}")
+    print(f"PLEN:{codecs.encode(PLEN, 'hex')}")
+    print(f"Operation:{codecs.encode(Operation, 'hex')}")
+    print(f"SHA:{codecs.encode(SHA, 'hex')}")
+    print(f"SPA:{socket.inet_ntoa(SPA)}")
+    print(f"THA:{codecs.encode(THA, 'hex')}")
+    print(f"TPA:{socket.inet_ntoa(TPA)}")
 
     print("===========================================")
