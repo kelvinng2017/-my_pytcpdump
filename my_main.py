@@ -14,7 +14,8 @@ while True:
     Eth_header_decode = codecs.encode(Eth_header, 'hex')
     print(type(Eth_header_decode))
     print(len(Eth_header_decode))
-    print(f"Eth_header_from:{Eth_header_decode[0:2]}:{Eth_header_decode[2:4]}:{Eth_header_decode[4:6]}:{Eth_header_decode[6:8]}:{Eth_header_decode[8:10]}:{Eth_header_decode[10:12]}")
+    Eth_header_decode_string = Eth_header_decode.decode("utf-8")
+    print(f"Eth_header_from:{Eth_header_decode_string[0:2]}:{Eth_header_decode_string[2:4]}:{Eth_header_decode_string[4:6]}:{Eth_header_decode_string[6:8]}:{Eth_header_decode_string[8:10]}:{Eth_header_decode_string[10:12]}")
     print(Eth_header_decode)
     Ip_header = packet[14:34]
     Ip_header_decode = codecs.encode(Ip_header, 'hex')
