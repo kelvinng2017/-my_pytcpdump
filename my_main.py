@@ -27,6 +27,9 @@ while True:
 
     HTYPE, PTYPE, HLEN, PLEN, Operation, SHA, SPA, THA, TPA = struct.unpack(
         '2s2s1s1s2s6s4s6s4s', packet[14:14+28])
+    HTYPE_hex = codecs.decode(HTYPE, 'hex')
+    HTYPE_dec = int(HTYPE_hex, 16)
+    #HTYPE_hex_decode_string = HTYPE_dec.decode("utf-8")
 
     print(
         f"Eth_header_from:{Eth_header_decode_string[0:2]}:{Eth_header_decode_string[2:4]}:{Eth_header_decode_string[4:6]}:{Eth_header_decode_string[6:8]}:{Eth_header_decode_string[8:10]}:{Eth_header_decode_string[10:12]}")
@@ -49,8 +52,7 @@ while True:
     print(f"packetid:{packetid}")
     print(f"seq:{seq}")
 
-    print(f"HTYPE:{codecs.encode(HTYPE, 'hex')}")
-    print(f"HLEN:{codecs.encode(HLEN, 'hex')}")
+    print(f"HLEN:{HTYPE_dec}")
     print(f"PLEN:{codecs.encode(PLEN, 'hex')}")
     print(f"Operation:{codecs.encode(Operation, 'hex')}")
     print(f"SHA:{codecs.encode(SHA, 'hex')}")
