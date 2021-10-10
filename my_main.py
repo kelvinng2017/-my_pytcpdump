@@ -26,6 +26,9 @@ while True:
     Ip_header_decode = codecs.encode(Ip_header, 'hex')
     iph = struct.unpack('!BBHHHBBH4s4s', Ip_header)
     IHL_VERSION, TYPE_OF_SERVICE, total_len, pktID, FRAGMENT_STATUS, TIME_TO_LIVE, PROTOCOL, check_sum_of_hdr, src_IP, dest_IP = iph
+    icmp_header = packet[34:42]
+    icmp_type, code, checksum, packetid, seq = struct.unpack(
+        'BbHHh', icmp_header)
 
     print(f"IHL_VERSION:{IHL_VERSION}")
     print(f"TYPE_OF_SERVICE:{TYPE_OF_SERVICE}")
@@ -37,5 +40,8 @@ while True:
     print(f"check_sum_of_hdr:{check_sum_of_hdr}")
     print(f"src_IP:{socket.inet_ntoa(src_IP)}")
     print(f"dest_IP:{socket.inet_ntoa(dest_IP)}")
-    # print("Ip_header_decode")
-    # print(Ip_header_decode)
+    print(f"icmp_type:{icmp_type}")
+    print(f"code:{code}")
+    print(f"checksum:{checksum}")
+    print(f"packetid:{packetid}")
+    print(f"seq:{seq}")
