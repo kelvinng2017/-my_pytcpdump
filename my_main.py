@@ -6,4 +6,4 @@ while True:
     print(type(packet))  # hi
     packet_decode = packet.decode('uf8-8')
     print(packet_decode)
-    print(type(packet_decode))
+    print(type(packet_decode))  # hi
