@@ -5,6 +5,6 @@ while True:
     packet, _ = s.recvfrom(65565)
     print(packet)
     print(type(packet))  # hi
-    packet_decode = packet.decode('uf8-8')
+    packet_decode = packet.decode('utf-8')
     print(packet_decode)
     print(type(packet_decode))  # hi
