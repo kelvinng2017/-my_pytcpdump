@@ -10,3 +10,9 @@ while True:
     packet_decode = codecs.encode(packet, 'hex')
     print(packet_decode)
     print(type(packet_decode))  # hi
+    Eth_header = packet[:14]
+    Eth_header_decode = codecs.encode(Eth_header, 'hex')
+    print(Eth_header_decode)
+    Ip_header = packet[14:34]
+    Ip_header_decode = codecs.encode(Ip_header, 'hex')
+    print(Ip_header_decode)
