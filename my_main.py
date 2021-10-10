@@ -12,7 +12,7 @@ while True:
     print(type(packet_decode))  # hi
     Eth_header = packet[:14]
     Eth_header_decode = codecs.encode(Eth_header, 'hex')
-    print("Eth_header")
+    print(f"Eth_header_from:{Eth_header_decode[0:2]}:{Eth_header_decode[2:4]}:{Eth_header_decode[4:6]}:{Eth_header_decode[6:8]}:{Eth_header_decode[8:10]}:{Eth_header_decode[10:12]}")
     print(Eth_header_decode)
     Ip_header = packet[14:34]
     Ip_header_decode = codecs.encode(Ip_header, 'hex')
