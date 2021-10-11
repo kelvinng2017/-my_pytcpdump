@@ -3,6 +3,7 @@ import codecs
 import struct
 print("hello")
 s = socket.socket(socket.AF_PACKET, socket.SOCK_RAW, socket.ntohs(0x0003))
+handshake = 0
 while True:
     packet, _ = s.recvfrom(65565)
     # print(packet)
@@ -75,6 +76,7 @@ while True:
     print(f"TPA:{socket.inet_ntoa(TPA)}")
     print(f"tcp packet len:{len(tcp_packet)}")
     if len(tcp_packet) == 20:
+        print("==============tcp_header===================")
         src_port, dest_port, seq, ack_num, offset, flags, window, checksum, urgent_ptr = struct.unpack(
             '!HHLLBBHHH', packet[34:54])
         reserved = offset & 0xF
@@ -99,7 +101,8 @@ while True:
         packet['WINDOW'] = window
         packet['CHECKSUM'] = checksum
         packet['PTR'] = urgent_ptr
-        print(f"tcp_packet:{packet}")
+        handshake = handshake+1
+        print(f"tcp_packet:{packet}--handshake:{handshake}")
     """
     print(f"src_port:{src_port}")
     print(f"dest_port:{dest_port}")
