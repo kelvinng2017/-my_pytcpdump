@@ -40,6 +40,7 @@ while True:
         '!HHLLBBHHH', packet[34:54])
     """
     tcp_packet = packet[34:54]
+    tcp_packet_len = len(tcp_packet)
     # HTYPE_hex_decode_string = HTYPE_dec.decode("utf-8")
 
     print(
@@ -71,6 +72,7 @@ while True:
     print(f"SPA:{socket.inet_ntoa(SPA)}")
     print(f"THA:{THA_dec}")
     print(f"TPA:{socket.inet_ntoa(TPA)}")
+    print(f"tcp packet len:{tcp_packet_len}")
     print(f"tcp packet:{tcp_packet}")
     """
     print(f"src_port:{src_port}")
