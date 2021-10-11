@@ -99,7 +99,7 @@ while True:
         packet['WINDOW'] = window
         packet['CHECKSUM'] = checksum
         packet['PTR'] = urgent_ptr
-        print("tcp_packet")
+        print(f"tcp_packet:{packet}")
     """
     print(f"src_port:{src_port}")
     print(f"dest_port:{dest_port}")
