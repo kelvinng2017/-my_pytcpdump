@@ -79,6 +79,9 @@ while True:
         print("==============tcp_header===================")
         src_port, dest_port, seq, ack_num, offset, flags, window, checksum, urgent_ptr = struct.unpack(
             '!HHLLBBHHH', packet[34:54])
+
+        tcp_data = packet[54:]
+
         reserved = offset & 0xF
         tcpip_length = offset >> 4
         packet = {}
@@ -101,8 +104,8 @@ while True:
         packet['WINDOW'] = window
         packet['CHECKSUM'] = checksum
         packet['PTR'] = urgent_ptr
-        handshake = handshake+1
-        print(f"tcp_packet:{packet}--handshake:{handshake}")
+        packet['DATA'] = tcp_data
+
     """
     print(f"src_port:{src_port}")
     print(f"dest_port:{dest_port}")
