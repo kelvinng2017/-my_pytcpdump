@@ -104,7 +104,8 @@ while True:
         packet['WINDOW'] = window
         packet['CHECKSUM'] = checksum
         packet['PTR'] = urgent_ptr
-        packet['DATA'] = (codecs.encode(tcp_data, 'hex')).decode("utf-8")
+        packet['DATAlen'] = len(tcp_data)
+        packet['DATA'] = tcp_data
         print(f"packet:{packet}")
 
     """
