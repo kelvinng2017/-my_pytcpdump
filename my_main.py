@@ -7,7 +7,7 @@ while True:
     packet, _ = s.recvfrom(65565)
     # print(packet)
     # print(type(packet))  # hi
-    #packet_decode = packet.decode('ascii')
+    # packet_decode = packet.decode('ascii')
     packet_decode = codecs.encode(packet, 'hex')
     # print(packet_decode)
     # print(type(packet_decode))  # hi
@@ -35,10 +35,13 @@ while True:
     SHA_dec = (codecs.encode(SHA, 'hex')).decode("utf-8")
     THA_dec = (codecs.encode(THA, 'hex')).decode("utf-8")
 
+    """
     src_port, dest_port, seq, ack_num, offset, flags, window, checksum, urgent_ptr = struct.unpack(
         '!HHLLBBHHH', packet[34:54])
-
-    #HTYPE_hex_decode_string = HTYPE_dec.decode("utf-8")
+    """
+    tcp_packet = struct.unpack(
+        '!HHLLBBHHH', packet[34:54])
+    # HTYPE_hex_decode_string = HTYPE_dec.decode("utf-8")
 
     print(
         f"Eth_header_from:{Eth_header_decode_string[0:2]}:{Eth_header_decode_string[2:4]}:{Eth_header_decode_string[4:6]}:{Eth_header_decode_string[6:8]}:{Eth_header_decode_string[8:10]}:{Eth_header_decode_string[10:12]}")
@@ -69,6 +72,8 @@ while True:
     print(f"SPA:{socket.inet_ntoa(SPA)}")
     print(f"THA:{THA_dec}")
     print(f"TPA:{socket.inet_ntoa(TPA)}")
+    print(f"tcp packet:{tcp_packet}")
+    """
     print(f"src_port:{src_port}")
     print(f"dest_port:{dest_port}")
     print(f"seq:{seq}")
@@ -78,5 +83,5 @@ while True:
     print(f"window:{window}")
     print(f"checksum:{checksum}")
     print(f"urgent_ptr:{urgent_ptr}")
-
+    """
     print("===========================================")
