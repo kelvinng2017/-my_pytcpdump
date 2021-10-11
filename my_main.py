@@ -74,7 +74,7 @@ while True:
     print(f"THA:{THA_dec}")
     print(f"TPA:{socket.inet_ntoa(TPA)}")
     print(f"tcp packet len:{len(tcp_packet)}")
-    if tcp_packet == 20:
+    if len(tcp_packet) == 20:
         src_port, dest_port, seq, ack_num, offset, flags, window, checksum, urgent_ptr = struct.unpack(
             '!HHLLBBHHH', packet[34:54])
         print(f"src_port:{src_port}")
