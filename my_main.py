@@ -41,6 +41,7 @@ while True:
     """
     tcp_packet = packet[34:54]
     tcp_packet_len = len(tcp_packet)
+
     # HTYPE_hex_decode_string = HTYPE_dec.decode("utf-8")
 
     print(
@@ -73,18 +74,17 @@ while True:
     print(f"THA:{THA_dec}")
     print(f"TPA:{socket.inet_ntoa(TPA)}")
     print(f"tcp packet len:{len(tcp_packet)}")
-    for tcp_packet_len_index in range(len(tcp_packet)):
-        print(
-            f"tcp packet_{tcp_packet_len_index}:{tcp_packet[tcp_packet_len_index]}")
-    """
-    print(f"src_port:{src_port}")
-    print(f"dest_port:{dest_port}")
-    print(f"seq:{seq}")
-    print(f"ack_num:{ack_num}")
-    print(f"offset:{offset}")
-    print(f"flags:{flags}")
-    print(f"window:{window}")
-    print(f"checksum:{checksum}")
-    print(f"urgent_ptr:{urgent_ptr}")
-    """
+    if tcp_packet == 20:
+        src_port, dest_port, seq, ack_num, offset, flags, window, checksum, urgent_ptr = struct.unpack(
+            '!HHLLBBHHH', packet[34:54])
+        print(f"src_port:{src_port}")
+        print(f"dest_port:{dest_port}")
+        print(f"seq:{seq}")
+        print(f"ack_num:{ack_num}")
+        print(f"offset:{offset}")
+        print(f"flags:{flags}")
+        print(f"window:{window}")
+        print(f"checksum:{checksum}")
+        print(f"urgent_ptr:{urgent_ptr}")
+
     print("===========================================")
