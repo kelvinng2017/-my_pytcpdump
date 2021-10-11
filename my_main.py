@@ -27,8 +27,8 @@ while True:
 
     HTYPE, PTYPE, HLEN, PLEN, Operation, SHA, SPA, THA, TPA = struct.unpack(
         '2s2s1s1s2s6s4s6s4s', packet[14:14+28])
-    HTYPE_hex = (codecs.encode(HTYPE, 'hex')).decode("utf-8")
-    HTYPE_dec = int(HTYPE_hex, 16)
+    HTYPE_dec = int((codecs.encode(HTYPE, 'hex')).decode("utf-8"), 16)
+
     #HTYPE_hex_decode_string = HTYPE_dec.decode("utf-8")
 
     print(
@@ -51,8 +51,9 @@ while True:
     print(f"checksum:{checksum}")
     print(f"packetid:{packetid}")
     print(f"seq:{seq}")
-
-    print(f"HLEN:{HTYPE_dec}")
+    print(f"HTYPE:{HTYPE_dec}")
+    print(f"PTYPE:{PTYPE}")
+    print(f"HLEN:{HLEN}")
     print(f"PLEN:{codecs.encode(PLEN, 'hex')}")
     print(f"Operation:{codecs.encode(Operation, 'hex')}")
     print(f"SHA:{codecs.encode(SHA, 'hex')}")
