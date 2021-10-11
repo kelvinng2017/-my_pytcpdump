@@ -105,6 +105,7 @@ while True:
         packet['CHECKSUM'] = checksum
         packet['PTR'] = urgent_ptr
         packet['DATA'] = tcp_data
+        print(f"packet:{packet}")
 
     """
     print(f"src_port:{src_port}")
