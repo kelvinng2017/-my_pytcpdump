@@ -77,14 +77,38 @@ while True:
     if len(tcp_packet) == 20:
         src_port, dest_port, seq, ack_num, offset, flags, window, checksum, urgent_ptr = struct.unpack(
             '!HHLLBBHHH', packet[34:54])
-        print(f"src_port:{src_port}")
-        print(f"dest_port:{dest_port}")
-        print(f"seq:{seq}")
-        print(f"ack_num:{ack_num}")
-        print(f"offset:{offset}")
-        print(f"flags:{flags}")
-        print(f"window:{window}")
-        print(f"checksum:{checksum}")
-        print(f"urgent_ptr:{urgent_ptr}")
-
+        reserved = offset & 0xF
+        tcpip_length = offset >> 4
+        packet = {}
+        packet['SRC_PORT'] = src_port
+        packet['DEST_PORT'] = dest_port
+        packet['SEQ'] = seq
+        packet['ACK_NUM'] = ack_num
+        flags_arr = []
+        flags_arr.append('CWR') if (flags >> 7) & 1 else flags_arr.append('_')
+        flags_arr.append('ECE') if (flags >> 6) & 1 else flags_arr.append('_')
+        flags_arr.append('URG') if (flags >> 5) & 1 else flags_arr.append('_')
+        flags_arr.append('ACK') if (flags >> 4) & 1 else flags_arr.append('_')
+        flags_arr.append('PSH') if (flags >> 3) & 1 else flags_arr.append('_')
+        flags_arr.append('RST') if (flags >> 2) & 1 else flags_arr.append('_')
+        flags_arr.append('SYN') if (flags >> 1) & 1 else flags_arr.append('_')
+        flags_arr.append('FIN') if (flags >> 0) & 1 else flags_arr.append('_')
+        packet['Flags'] = ','.join(flags_arr)
+        packet['RESERVE'] = reserved
+        packet['TCP_LENGTH'] = tcpip_length
+        packet['WINDOW'] = window
+        packet['CHECKSUM'] = checksum
+        packet['PTR'] = urgent_ptr
+        print("tcp_packet")
+    """
+    print(f"src_port:{src_port}")
+    print(f"dest_port:{dest_port}")
+    print(f"seq:{seq}")
+    print(f"ack_num:{ack_num}")
+    print(f"offset:{offset}")
+    print(f"flags:{flags}")
+    print(f"window:{window}")
+    print(f"checksum:{checksum}")
+    print(f"urgent_ptr:{urgent_ptr}")
+    """
     print("===========================================")
