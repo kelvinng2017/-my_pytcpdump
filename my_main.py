@@ -39,8 +39,7 @@ while True:
     src_port, dest_port, seq, ack_num, offset, flags, window, checksum, urgent_ptr = struct.unpack(
         '!HHLLBBHHH', packet[34:54])
     """
-    tcp_packet = struct.unpack(
-        '!HHLLBBHHH', packet[34:54])
+    tcp_packet = packet[34:54]
     # HTYPE_hex_decode_string = HTYPE_dec.decode("utf-8")
 
     print(
