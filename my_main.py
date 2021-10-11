@@ -73,7 +73,9 @@ while True:
     print(f"THA:{THA_dec}")
     print(f"TPA:{socket.inet_ntoa(TPA)}")
     print(f"tcp packet len:{tcp_packet_len}")
-    print(f"tcp packet:{tcp_packet}")
+    for tcp_packet_len_index in range(len(tcp_packet_len)):
+        print(
+            f"tcp packet_{tcp_packet_len_index}:{tcp_packet[tcp_packet_len_index]}")
     """
     print(f"src_port:{src_port}")
     print(f"dest_port:{dest_port}")
