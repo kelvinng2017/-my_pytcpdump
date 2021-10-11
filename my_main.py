@@ -34,6 +34,10 @@ while True:
     Operation_dec = int((codecs.encode(Operation, 'hex')).decode("utf-8"), 16)
     SHA_dec = (codecs.encode(SHA, 'hex')).decode("utf-8")
     THA_dec = (codecs.encode(THA, 'hex')).decode("utf-8")
+
+    src_port, dest_port, seq, ack_num, offset, flags, window, checksum, urgent_ptr = struct.unpack(
+        '!HHLLBBHHH', packet[34:54])
+
     #HTYPE_hex_decode_string = HTYPE_dec.decode("utf-8")
 
     print(
@@ -65,5 +69,14 @@ while True:
     print(f"SPA:{socket.inet_ntoa(SPA)}")
     print(f"THA:{THA_dec}")
     print(f"TPA:{socket.inet_ntoa(TPA)}")
+    print(f"src_port:{src_port}")
+    print(f"dest_port:{dest_port}")
+    print(f"seq:{seq}")
+    print(f"ack_num:{ack_num}")
+    print(f"offset:{offset}")
+    print(f"flags:{flags}")
+    print(f"window:{window}")
+    print(f"checksum:{checksum}")
+    print(f"urgent_ptr:{urgent_ptr}")
 
     print("===========================================")
