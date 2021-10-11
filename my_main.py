@@ -27,7 +27,7 @@ while True:
 
     HTYPE, PTYPE, HLEN, PLEN, Operation, SHA, SPA, THA, TPA = struct.unpack(
         '2s2s1s1s2s6s4s6s4s', packet[14:14+28])
-    HTYPE_hex = codecs.decode(HTYPE, 'hex')
+    HTYPE_hex = (codecs.encode(HTYPE, 'hex')).decode("utf-8")
     HTYPE_dec = int(HTYPE_hex, 16)
     #HTYPE_hex_decode_string = HTYPE_dec.decode("utf-8")
 
