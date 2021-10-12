@@ -14,6 +14,6 @@ signal.signal(signal.SIGTERM, exit)
 
 
 verbose = 1
-ifc='fe80::920:c9e9:f0d2:7b27'
+ifc='08:00:27:1f:67:f4'
 sniffer = Sniffer(ifc=ifc, verb=verbose)
 sniffer.start()
